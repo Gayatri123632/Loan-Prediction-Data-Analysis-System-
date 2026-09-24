@@ -450,6 +450,32 @@ def inject_fintech_theme():
 
 #MainMenu, footer {
     visibility: hidden;
+}header[data-testid="stHeader"] {
+    background: #080c16 !important;
+    border-bottom: 1px solid #1e293b !important;
+}
+
+header[data-testid="stHeader"] * {
+    color: #f8fafc !important;
+}
+.stApp {
+    color: #f8fafc !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #f8fafc !important;
+}
+
+p {
+    color: #cbd5e1 !important;
+}
+
+label {
+    color: #e2e8f0 !important;
+}
+
+.stMarkdown {
+    color: #f8fafc !important;
 }
         .block-container {
             padding-top: 2.2rem;
@@ -693,6 +719,229 @@ def inject_fintech_theme():
             border-radius: 8px !important;
             border: 1px solid var(--border) !important;
         }
+        /* =========================================================
+   DARK TABLE STYLING
+   ========================================================= */
+
+/* Streamlit DataFrame */
+div[data-testid="stDataFrame"] {
+    background: #0b1220 !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+/* DataFrame cells */
+div[data-testid="stDataFrame"] [role="gridcell"] {
+    background-color: #0b1220 !important;
+    color: #f8fafc !important;
+    border-color: #1e293b !important;
+}
+
+/* DataFrame column headers */
+div[data-testid="stDataFrame"] [role="columnheader"] {
+    background-color: #111827 !important;
+    color: #f8fafc !important;
+    border-color: #1e293b !important;
+    font-weight: 600 !important;
+}
+
+/* Normal Streamlit tables */
+.stTable {
+    background-color: #0b1220 !important;
+    color: #f8fafc !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+/* Table header */
+.stTable thead th {
+    background-color: #111827 !important;
+    color: #f8fafc !important;
+    border-color: #1e293b !important;
+    font-weight: 600 !important;
+}
+
+/* Table body cells */
+.stTable tbody td {
+    background-color: #0b1220 !important;
+    color: #e2e8f0 !important;
+    border-color: #1e293b !important;
+}
+
+/* Table rows */
+.stTable tbody tr {
+    background-color: #0b1220 !important;
+}
+
+/* Hover effect */
+.stTable tbody tr:hover td {
+    background-color: #162033 !important;
+    color: #ffffff !important;
+}
+/* =========================================================
+   PREMIUM EXPANDER + TABLE FIX
+   ========================================================= */
+
+/* ---------- DETAILED ANALYSIS EXPANDERS ---------- */
+
+/* Expander container */
+div[data-testid="stExpander"] {
+    background: #0b1220 !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+/* Expander header */
+div[data-testid="stExpander"] summary {
+    background: #111827 !important;
+    color: #f8fafc !important;
+    border: none !important;
+}
+
+/* Expander header text */
+div[data-testid="stExpander"] summary p {
+    color: #f8fafc !important;
+    font-weight: 600 !important;
+}
+
+/* Expander arrow */
+div[data-testid="stExpander"] summary svg {
+    color: #f8fafc !important;
+    fill: #f8fafc !important;
+}
+
+/* HOVER — keep it DARK */
+div[data-testid="stExpander"] summary:hover {
+    background: #172033 !important;
+    color: #ffffff !important;
+}
+
+/* HOVER text */
+div[data-testid="stExpander"] summary:hover p {
+    color: #ffffff !important;
+}
+
+/* Expanded content area */
+div[data-testid="stExpander"] > details > div {
+    background: #0b1220 !important;
+    color: #f8fafc !important;
+}
+
+
+/* =========================================================
+   PREMIUM TABLE HEADERS
+   ========================================================= */
+
+/* Streamlit dataframe header */
+div[data-testid="stDataFrame"] [role="columnheader"] {
+    background-color: #172033 !important;
+    color: #ffffff !important;
+    border-color: #334155 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+}
+
+/* DataFrame body */
+div[data-testid="stDataFrame"] [role="gridcell"] {
+    background-color: #0b1220 !important;
+    color: #f1f5f9 !important;
+    border-color: #1e293b !important;
+    font-size: 14px !important;
+}
+
+/* DataFrame header hover */
+div[data-testid="stDataFrame"] [role="columnheader"]:hover {
+    background-color: #1e293b !important;
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   NORMAL STREAMLIT TABLE
+   ========================================================= */
+
+/* Header */
+.stTable thead th {
+    background-color: #172033 !important;
+    color: #ffffff !important;
+    border-color: #334155 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+}
+
+/* Body */
+.stTable tbody td {
+    background-color: #0b1220 !important;
+    color: #f1f5f9 !important;
+    border-color: #1e293b !important;
+    font-size: 14px !important;
+}
+
+/* Row hover */
+.stTable tbody tr:hover td {
+    background-color: #162033 !important;
+    color: #ffffff !important;
+}
+/* =========================================================
+   FINAL DATAFRAME TEXT VISIBILITY FIX
+   ========================================================= */
+
+div[data-testid="stDataFrame"] {
+    background-color: #0b1220 !important;
+    border: 1px solid #263449 !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+/* ALL TABLE CELLS */
+div[data-testid="stDataFrame"] [role="gridcell"],
+div[data-testid="stDataFrame"] [role="gridcell"] *,
+div[data-testid="stDataFrame"] [role="gridcell"] span,
+div[data-testid="stDataFrame"] [role="gridcell"] div {
+    background-color: #0b1220 !important;
+    color: #ffffff !important;
+    fill: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* ALL COLUMN HEADERS */
+div[data-testid="stDataFrame"] [role="columnheader"],
+div[data-testid="stDataFrame"] [role="columnheader"] *,
+div[data-testid="stDataFrame"] [role="columnheader"] span,
+div[data-testid="stDataFrame"] [role="columnheader"] div {
+    background-color: #172033 !important;
+    color: #ffffff !important;
+    fill: #ffffff !important;
+    opacity: 1 !important;
+    font-weight: 700 !important;
+}
+
+/* ROW HEADERS / INDEX */
+div[data-testid="stDataFrame"] [role="rowheader"],
+div[data-testid="stDataFrame"] [role="rowheader"] * {
+    background-color: #0b1220 !important;
+    color: #ffffff !important;
+    fill: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* TABLE HOVER */
+div[data-testid="stDataFrame"] [role="gridcell"]:hover,
+div[data-testid="stDataFrame"] [role="gridcell"]:hover * {
+    background-color: #162033 !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* HEADER HOVER */
+div[data-testid="stDataFrame"] [role="columnheader"]:hover,
+div[data-testid="stDataFrame"] [role="columnheader"]:hover * {
+    background-color: #1e293b !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
         </style>
         """,
         unsafe_allow_html=True,
