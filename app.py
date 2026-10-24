@@ -1672,7 +1672,7 @@ def main():
                 applicant_income = st.number_input("Applicant Income (₹)", value=5000.0, step=100.0)
                 coapplicant_income = st.number_input("Coapplicant Income (₹)", value=0.0, step=100.0)
                 loan_amount = st.number_input("Loan Amount (₹k)", value=128.0, step=10.0)
-                loan_term = st.number_input("Loan Amount Term (Months)", value=360.0, step=12.0)
+                loan_term = st.number_input("Loan Amount Term (Months)", value=18.0, step=12.0)
             with col3:
                 st.markdown("<div style='font-weight:600; margin-bottom:0.5rem; color:#3B82F6;'>Credit & Property</div>", unsafe_allow_html=True)
                 credit_history = st.selectbox("Credit History", [1.0, 0.0])
