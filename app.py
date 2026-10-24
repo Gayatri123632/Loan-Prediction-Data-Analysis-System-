@@ -409,6 +409,8 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 st.set_page_config(
     page_title="Loan Prediction Dashboard | Data Analytics",
@@ -975,6 +977,36 @@ REQUIRED_COLUMNS = [
     "Property_Area", "Loan_Status"
 ]
 
+# -----------------------------------------------------------------------------
+# Indian localisation helpers (date format + currency formatting)
+# -----------------------------------------------------------------------------
+INDIA_TZ = ZoneInfo("Asia/Kolkata")
+DATE_FORMAT = "%d-%m-%Y"  # e.g. 24-10-2026
+
+def india_today():
+    """Current date in India (Asia/Kolkata)."""
+    return datetime.now(INDIA_TZ).date()
+
+def format_indian_date(d=None):
+    """Format a date as DD-MM-YYYY. Defaults to today's date in India."""
+    return (d or india_today()).strftime(DATE_FORMAT)
+
+def format_inr(value, decimals=0):
+    """Format a number with the ₹ symbol and Indian grouping, e.g. ₹1,25,000."""
+    value = float(value)
+    sign = "-" if value < 0 else ""
+    whole, _, frac = f"{abs(value):.{decimals}f}".partition(".")
+    if len(whole) > 3:
+        head, tail = whole[:-3], whole[-3:]
+        groups = []
+        while len(head) > 2:
+            groups.insert(0, head[-2:])
+            head = head[:-2]
+        if head:
+            groups.insert(0, head)
+        whole = ",".join(groups + [tail])
+    return f"{sign}₹{whole}" + (f".{frac}" if frac else "")
+
 def render_kpi(label, value, sub=""):
     st.markdown(
         f"""
@@ -1393,7 +1425,7 @@ def main():
         with col4:
             render_kpi("Approval Rate", f"{insights['Overall Approval Rate']}%", "Success benchmark")
         with col5:
-            render_kpi("Avg Loan", f"₹{insights['Average Loan Amount']}k", "Portfolio mean")
+            render_kpi("Avg Loan", f"{format_inr(insights['Average Loan Amount'], 2)}k", "Portfolio mean")
 
         render_section("Approval Overview & Quick Snapshot", "Core macroeconomic metrics derived from historical loan performance.")
         
@@ -1417,7 +1449,7 @@ def main():
                     </div>
                     <div style="display: flex; justify-content: space-between;">
                         <span>Average Applicant Income</span>
-                        <b>₹{insights["Average Applicant Income"]:,.2f}</b>
+                        <b>{format_inr(insights["Average Applicant Income"], 2)}</b>
                     </div>
                 </div>
                 """,
@@ -1595,11 +1627,11 @@ def main():
         with col1:
             render_kpi("Approval Rate", f"{insights['Overall Approval Rate']}%", "Overall success")
         with col2:
-            render_kpi("Avg Income", f"₹{insights['Average Applicant Income']:,.0f}", "Applicant mean")
+            render_kpi("Avg Income", format_inr(insights['Average Applicant Income']), "Applicant mean")
         with col3:
-            render_kpi("Avg Coapplicant", f"₹{insights['Average Coapplicant Income']:,.0f}", "Coapplicant mean")
+            render_kpi("Avg Coapplicant", format_inr(insights['Average Coapplicant Income']), "Coapplicant mean")
         with col4:
-            render_kpi("Avg Loan", f"₹{insights['Average Loan Amount']}k", "Loan principal")
+            render_kpi("Avg Loan", f"{format_inr(insights['Average Loan Amount'], 2)}k", "Loan principal")
 
         render_section("Category-Wise Approval / Rejection Reports", "Detailed performance tables grouped by key demographic and financial factors.")
         cat_results = step10_category_wise(data)
